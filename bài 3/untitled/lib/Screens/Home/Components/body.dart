@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:untitled/constant.dart';
 
 class Body extends StatelessWidget {
-  const Body({super.key});
-
+  const Body({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -13,20 +12,21 @@ class Body extends StatelessWidget {
         children: <Widget>[
           Text(
             "Burger".toUpperCase(),
-            style: Theme.of(context).textTheme.displayLarge!.copyWith(
-                  color: kTextcolor,
-                  fontWeight: FontWeight.bold,
-                ),
-          ),
-          Text(
-            "Lorem ipsum dolor sit amet, consectetur \nadipiscing elit, sed do eiusmod tempor \nincididunt ut labor",
-            style: TextStyle(
-              fontSize: 21,
-              color: kTextcolor.withOpacity(0.34),
+            style: Theme.of(context).textTheme.titleLarge?.copyWith( // Adjust the headline6 font size
+              color: kTextcolor,
+              fontWeight: FontWeight.bold,
+              fontSize: 30, // Set the desired font size for "Burger"
             ),
           ),
+        //  Text(
+       //     "Lorem ipsum dolor sit amet, consectetur \nadipiscing elit, sed do eiusmod tempor \nincididunt ut labor",
+      //      style: TextStyle(
+       //       fontSize: 21,
+      //        color: kTextcolor.withOpacity(0.34),
+     //       ),
+      //    ),
           FittedBox(
-            // Now it just take the required spaces
+            // Now it just takes the required spaces
             child: Container(
               margin: const EdgeInsets.symmetric(vertical: 20),
               padding: const EdgeInsets.all(15),

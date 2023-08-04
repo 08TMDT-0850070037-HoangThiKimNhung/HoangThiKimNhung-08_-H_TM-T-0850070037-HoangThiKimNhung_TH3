@@ -7,32 +7,38 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    // This size provide us total height and width  of our screen
     return Scaffold(
-      body: Container(
-        height: size.height,
-        // it will take full width
-        width: size.width,
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/images/bg.png"),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            CustomAppBar(),
-            const Spacer(),
-            // It will cover 1/3 of free spaces
-            const Body(),
-            const Spacer(
-              flex: 2,
+      body: OrientationBuilder(
+        builder: (context, orientation) {
+          // Check the device's orientation to determine the image aspect ratio
+          bool isPortrait = orientation == Orientation.portrait;
+          String imagePath = isPortrait
+              ? "assets/images/bgggg.png" // Use the portrait image
+              : "assets/images/bg.png"; // Use the landscape image
+
+          return FractionallySizedBox(
+            widthFactor: 1.0, // Set the image's width to match the container's width
+            heightFactor: 1.0, // Set the image's height to match the container's height
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(imagePath),
+                  fit: BoxFit.cover,
+                ),
+              ),
+              child: const SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    CustomAppBar(),
+                    Body(),
+                    // Add any other widgets here as needed
+                  ],
+                ),
+              ),
             ),
-            // it will cover 2/3 of free spaces
-          ],
-        ),
+          );
+        },
       ),
     );
   }
